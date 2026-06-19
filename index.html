@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온집 인테리어 · ONJIP — 시공 전·후로 증명하는 인테리어</title>
+<meta name="description" content="시공 전·후를 직접 비교하세요. 아파트·주방·단독주택 리모델링 전문 온집 인테리어. 시공 사례, 시공 과정, 하자보수 보증, 무료 견적 문의.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{
+  --sand:#E9E3D7; --paper:#F3EFE7; --ink:#23211D; --petrol:#2E5159; --petrol-d:#1F3A40; --line:#D9D2C4; --grey:#6E6A60;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;background:var(--paper);color:var(--ink);
+  line-height:1.62;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-x:hidden}
+.disp{font-family:"Archivo",system-ui,sans-serif}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:90%;max-width:1200px;margin:0 auto}
+.eyebrow{font-family:"Archivo",sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border:1.5px solid var(--ink);background:transparent;
+  color:var(--ink);font-size:.88rem;font-weight:700;cursor:pointer;transition:background .2s,color .2s}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn--petrol{background:var(--petrol);border-color:var(--petrol);color:#fff}
+.btn--petrol:hover{background:var(--petrol-d);border-color:var(--petrol-d)}
+.section{padding:88px 0;border-top:1px solid var(--line)}
+
+/* 내비 */
+.topnav{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 5%;background:rgba(243,239,231,.94);border-bottom:1px solid var(--line)}
+.topnav__logo{font-family:"Archivo",sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.01em}
+.topnav__logo b{color:var(--petrol)}
+.topnav__links{display:flex;gap:26px;align-items:center}
+.topnav__links a{font-size:.92rem;font-weight:600}
+.topnav__links a:hover{color:var(--petrol)}
+.topnav__cta{padding:10px 18px}
+.topnav__burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.topnav__burger i{width:24px;height:2px;background:var(--ink);display:block}
+
+/* before-after 슬라이더 */
+.ba{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--sand);cursor:ew-resize;user-select:none;touch-action:none}
+.ba img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.ba__overlay{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}
+.ba__handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-1px);pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.ba__grip{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;
+  background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:1.05rem;box-shadow:0 3px 12px rgba(0,0,0,.28)}
+.ba__lab{position:absolute;top:12px;font-family:"Archivo",sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;
+  padding:5px 11px;color:#fff;z-index:2}
+.ba__lab--b{left:12px;background:var(--ink)}
+.ba__lab--a{right:12px;background:var(--petrol)}
+
+/* 히어로 */
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:50px;align-items:center;padding:56px 0 30px}
+.hero__title{font-family:"Archivo",sans-serif;font-weight:800;font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;letter-spacing:-.02em;margin:18px 0 22px}
+.hero__title em{font-style:normal;color:var(--petrol)}
+.hero__lead{font-size:1.06rem;color:var(--grey);max-width:32ch;margin-bottom:28px}
+.hero__cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero__hint{margin-top:16px;font-size:.82rem;color:var(--grey)}
+.hero__ba{aspect-ratio:5/4}
+
+@media (max-width:880px){
+  .topnav__links{position:fixed;inset:0 0 0 auto;width:76%;max-width:300px;background:var(--paper);flex-direction:column;
+    justify-content:center;gap:26px;transform:translateX(100%);transition:transform .3s;box-shadow:-8px 0 40px rgba(0,0,0,.12);z-index:70}
+  .topnav__links.open{transform:translateX(0)}
+  .topnav__links a{font-size:1.1rem}
+  .topnav__cta{display:none}
+  .topnav__burger{display:flex;z-index:71}
+  .hero{grid-template-columns:1fr;gap:28px;padding:30px 0 10px}
+  .hero__ba{aspect-ratio:4/3}
+  .section{padding:58px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- 내비 -->
+<nav class="topnav" id="topnav">
+  <a class="topnav__logo" href="#home">ON<b>JIP</b> 온집</a>
+  <div class="topnav__links" id="navLinks">
+    <a href="#work">시공 사례</a>
+    <a href="#process">시공 과정</a>
+    <a href="#about">회사 소개</a>
+    <a href="#contact">문의</a>
+    <a href="#contact" class="btn btn--petrol topnav__cta">무료 견적</a>
+  </div>
+  <button class="topnav__burger" id="burger" aria-label="메뉴"><i></i><i></i><i></i></button>
+</nav>
+
+<!-- 히어로 -->
+<header class="wrap" id="home">
+  <div class="hero">
+    <div class="hero__text reveal">
+      <span class="eyebrow">Before → After</span>
+      <h1 class="hero__title">말 대신,<br><em>전·후</em>로<br>증명합니다</h1>
+      <p class="hero__lead">손잡이를 좌우로 끌어보세요. 같은 공간이 어떻게 달라지는지, 시공 전과 후를 직접 비교할 수 있습니다.</p>
+      <div class="hero__cta">
+        <a href="#contact" class="btn btn--petrol">무료 견적 문의</a>
+        <a href="tel:0212345678" class="btn">전화 상담</a>
+      </div>
+      <p class="hero__hint">↔ 아래 슬라이더를 드래그해 보세요</p>
+    </div>
+    <div class="ba hero__ba reveal" data-pos="50">
+      <img class="ba__base" src="https://images.unsplash.com/photo-1724582586529-62622e50c0b3?auto=format&fit=crop&w=1100&q=80" alt="시공 후 거실">
+      <div class="ba__overlay"><img src="https://images.unsplash.com/photo-1630699144919-681cf308ae82?auto=format&fit=crop&w=1100&q=80" alt="시공 전 거실"></div>
+      <div class="ba__handle"><span class="ba__grip">⇄</span></div>
+      <span class="ba__lab ba__lab--b">BEFORE</span>
+      <span class="ba__lab ba__lab--a">AFTER</span>
+    </div>
+  </div>
+</header>
+
+<style>
+/* 시공 사례 */
+.work__head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:30px}
+.work__head h2{font-family:"Archivo",sans-serif;font-weight:700;font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.filter{display:flex;gap:8px;flex-wrap:wrap}
+.filter button{border:1.5px solid var(--line);background:transparent;padding:8px 15px;font-size:.8rem;font-weight:600;cursor:pointer;
+  transition:background .15s,color .15s,border-color .15s}
+.filter button.on,.filter button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:38px 30px;margin-top:6px}
+.case .ba{aspect-ratio:4/3}
+.case__head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:16px}
+.case__head h3{font-size:1.2rem;font-weight:700}
+.case__cat{font-family:"Archivo",sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--petrol);white-space:nowrap}
+.case__meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:13px;border-top:1px solid var(--line);padding-top:13px}
+.case__meta .k{font-family:"Archivo",sans-serif;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.case__meta .v{font-size:.95rem;font-weight:600;margin-top:3px}
+.work__note{margin-top:22px;font-size:.82rem;color:var(--grey)}
+
+@media (max-width:880px){
+  .cases{grid-template-columns:1fr;gap:34px}
+}
+</style>
+
+<!-- 시공 사례 -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="work__head reveal">
+      <div><p class="eyebrow">Portfolio — 시공 전·후</p><h2>시공 사례</h2></div>
+      <div class="filter" id="filter">
+        <button class="on" data-cat="전체">전체</button>
+        <button data-cat="아파트">아파트</button>
+        <button data-cat="주방">주방</button>
+        <button data-cat="단독주택">단독주택</button>
+        <button data-cat="상가">상가·카페</button>
+      </div>
+    </div>
+    <div class="cases" id="cases">
+      <article class="case reveal" data-cat="아파트">
+        <div class="ba" data-pos="50">
+          <img class="ba__base" src="https://images.unsplash.com/photo-1705321963943-de94bb3f0dd3?auto=format&fit=crop&w=900&q=80" alt="시공 후">
+          <div class="ba__overlay"><img src="https://images.unsplash.com/photo-1668910242969-bd2933e7a5cf?auto=format&fit=crop&w=900&q=80" alt="시공 전"></div>
+          <div class="ba__handle"><span class="ba__grip">⇄</span></div>
+          <span class="ba__lab ba__lab--b">BEFORE</span><span class="ba__lab ba__lab--a">AFTER</span>
+        </div>
+        <div class="case__head"><h3>방배동 32평 아파트</h3><span class="case__cat">아파트</span></div>
+        <div class="case__meta"><div><div class="k">평형</div><div class="v">32평</div></div><div><div class="k">기간</div><div class="v">6주</div></div><div><div class="k">예산대</div><div class="v">5,000–6,000만</div></div></div>
+      </article>
+
+      <article class="case reveal" data-cat="주방">
+        <div class="ba" data-pos="50">
+          <img class="ba__base" src="https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?auto=format&fit=crop&w=900&q=80" alt="시공 후">
+          <div class="ba__overlay"><img src="https://images.unsplash.com/photo-1630699376059-b781970715b1?auto=format&fit=crop&w=900&q=80" alt="시공 전"></div>
+          <div class="ba__handle"><span class="ba__grip">⇄</span></div>
+          <span class="ba__lab ba__lab--b">BEFORE</span><span class="ba__lab ba__lab--a">AFTER</span>
+        </div>
+        <div class="case__head"><h3>상도동 주방·다이닝</h3><span class="case__cat">주방</span></div>
+        <div class="case__meta"><div><div class="k">유형</div><div class="v">주방 단독</div></div><div><div class="k">기간</div><div class="v">3주</div></div><div><div class="k">예산대</div><div class="v">2,500–3,500만</div></div></div>
+      </article>
+
+      <article class="case reveal" data-cat="단독주택">
+        <div class="ba" data-pos="50">
+          <img class="ba__base" src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?auto=format&fit=crop&w=900&q=80" alt="시공 후">
+          <div class="ba__overlay"><img src="https://images.unsplash.com/photo-1613668816690-546c6fa9ad42?auto=format&fit=crop&w=900&q=80" alt="시공 전"></div>
+          <div class="ba__handle"><span class="ba__grip">⇄</span></div>
+          <span class="ba__lab ba__lab--b">BEFORE</span><span class="ba__lab ba__lab--a">AFTER</span>
+        </div>
+        <div class="case__head"><h3>판교 단독주택 거실</h3><span class="case__cat">단독주택</span></div>
+        <div class="case__meta"><div><div class="k">평형</div><div class="v">48평</div></div><div><div class="k">기간</div><div class="v">10주</div></div><div><div class="k">예산대</div><div class="v">1억+</div></div></div>
+      </article>
+
+      <article class="case reveal" data-cat="상가">
+        <div class="ba" data-pos="50">
+          <img class="ba__base" src="https://images.unsplash.com/photo-1646987916641-1f3c8992daa2?auto=format&fit=crop&w=900&q=80" alt="시공 후">
+          <div class="ba__overlay"><img src="https://images.unsplash.com/photo-1668910251266-081835549c07?auto=format&fit=crop&w=900&q=80" alt="시공 전"></div>
+          <div class="ba__handle"><span class="ba__grip">⇄</span></div>
+          <span class="ba__lab ba__lab--b">BEFORE</span><span class="ba__lab ba__lab--a">AFTER</span>
+        </div>
+        <div class="case__head"><h3>성수 카페 인테리어</h3><span class="case__cat">상가·카페</span></div>
+        <div class="case__meta"><div><div class="k">유형</div><div class="v">카페 25평</div></div><div><div class="k">기간</div><div class="v">5주</div></div><div><div class="k">예산대</div><div class="v">4,000–5,000만</div></div></div>
+      </article>
+    </div>
+    <p class="work__note">* 평형·기간·예산대는 샘플 예시입니다. 실제 공간 전·후 사진과 견적은 현장 실측 후 안내드립니다.</p>
+  </div>
+</section>
+
+<style>
+/* 시공 과정 */
+#process{background:var(--sand)}
+.process{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:32px}
+.pstep{background:var(--paper);padding:28px 26px}
+.pstep .n{font-family:"Archivo",sans-serif;font-size:1.8rem;font-weight:800;color:var(--petrol);line-height:1}
+.pstep h4{font-size:1.05rem;font-weight:700;margin:12px 0 7px}
+.pstep p{font-size:.88rem;color:var(--grey)}
+
+/* 회사 소개 */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+.about__media{aspect-ratio:4/3;overflow:hidden;background:var(--sand)}
+.about__media img{width:100%;height:100%;object-fit:cover}
+.about__text h2{font-family:"Archivo",sans-serif;font-weight:700;font-size:clamp(1.7rem,3.2vw,2.5rem);margin:8px 0 16px;line-height:1.15}
+.about__text p{color:var(--grey);margin-bottom:14px}
+.about__points{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.about__points li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
+.about__points .ck{color:var(--petrol);font-weight:800;flex:none}
+.about__stats{display:flex;gap:30px;margin-top:26px;border-top:1px solid var(--line);padding-top:20px;flex-wrap:wrap}
+.about__stats b{font-family:"Archivo",sans-serif;font-size:1.8rem;color:var(--petrol);display:block;line-height:1}
+.about__stats small{color:var(--grey);font-size:.82rem}
+
+/* 견적 문의 */
+#contact{background:var(--sand)}
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
+.contact__l h2{font-family:"Archivo",sans-serif;font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);margin:8px 0 14px;line-height:1.15}
+.contact__l p{color:var(--grey)}
+.contact__l .chans{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.contact__l .chans a{font-weight:700;font-size:.9rem;padding:10px 16px;border:1.5px solid var(--ink)}
+.contact__l .chans a.kko{background:#FEE500;border-color:#FEE500;color:#1A1A1A}
+.form{background:var(--paper);border:1px solid var(--line);padding:28px}
+.form .field{margin-bottom:15px}
+.form label{display:block;font-size:.78rem;font-weight:700;margin-bottom:6px}
+.form input,.form select,.form textarea{width:100%;padding:12px 13px;border:1.5px solid var(--line);background:var(--paper);
+  font-family:inherit;font-size:.95rem;color:var(--ink)}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--petrol)}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* 푸터 */
+.footer{background:var(--ink);color:var(--sand);padding:50px 0 110px}
+.footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:22px;align-items:flex-end}
+.footer__logo{font-family:"Archivo",sans-serif;font-weight:800;font-size:1.6rem}
+.footer__logo b{color:var(--petrol)}
+.footer small{font-size:.82rem;color:rgba(233,227,215,.6);line-height:1.9;display:block}
+.footer a{color:#fff;border-bottom:1px solid rgba(255,255,255,.3)}
+
+/* 모바일 하단바 */
+.mbar{display:none}
+@media (max-width:880px){
+  .process{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;gap:26px}.about__media{order:-1}
+  .contact{grid-template-columns:1fr;gap:28px}
+  .form .two{grid-template-columns:1fr}
+  .footer{padding:40px 0 96px}.footer .wrap{flex-direction:column;align-items:flex-start}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:55;border-top:1px solid var(--ink)}
+  .mbar a{flex:1;text-align:center;padding:15px 4px;font-size:.84rem;font-weight:700}
+  .mbar a.tel{background:var(--ink);color:var(--sand)}
+  .mbar a.kko{background:#FEE500;color:#1A1A1A}
+  .mbar a.quote{background:var(--petrol);color:#fff}
+}
+</style>
+
+<!-- 시공 과정 -->
+<section class="section" id="process">
+  <div class="wrap">
+    <p class="eyebrow">Process — 시공 과정</p>
+    <h2 class="disp" style="font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700">투명하게, 단계별로</h2>
+    <div class="process reveal">
+      <div class="pstep"><div class="n">01</div><h4>상담 · 방문</h4><p>예산과 원하는 분위기를 듣고, 현장을 함께 둘러봅니다.</p></div>
+      <div class="pstep"><div class="n">02</div><h4>실측 · 견적</h4><p>정확히 실측하고 자재·공정별로 나눈 견적서를 드립니다. 숨은 비용 없이.</p></div>
+      <div class="pstep"><div class="n">03</div><h4>설계 · 3D</h4><p>도면과 3D로 완성된 모습을 먼저 확인하고 함께 조율합니다.</p></div>
+      <div class="pstep"><div class="n">04</div><h4>직영 시공</h4><p>하청 없이 직영팀이 시공합니다. 주 1회 진행 사진을 공유해요.</p></div>
+      <div class="pstep"><div class="n">05</div><h4>준공 · 검수</h4><p>체크리스트로 함께 검수하고, 보완 후 인도합니다.</p></div>
+      <div class="pstep"><div class="n">06</div><h4>A/S 보증</h4><p>준공 후 2년 하자보수 보증. 작은 문제도 빠르게 대응합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 회사 소개 -->
+<section class="section" id="about">
+  <div class="wrap about">
+    <div class="about__media reveal">
+      <img src="https://images.unsplash.com/photo-1704040686510-b747ff423ebb?auto=format&fit=crop&w=1000&q=80" alt="온집 시공 완성 공간">
+    </div>
+    <div class="about__text reveal">
+      <p class="eyebrow">About — 온집 인테리어</p>
+      <h2>과정을 보여줄 수 있어야<br>좋은 시공입니다</h2>
+      <p>온집은 '보여줄 수 있는 시공'을 원칙으로 합니다. 견적부터 자재, 진행 과정까지 모두 투명하게 공유해요.</p>
+      <ul class="about__points">
+        <li><span class="ck">✓</span> 하청 없는 <b>직영 시공</b> · 자재 명세 100% 공개</li>
+        <li><span class="ck">✓</span> 준공 후 <b>2년 하자보수 보증</b></li>
+        <li><span class="ck">✓</span> 계약 전 <b>3D 설계</b>로 완성 모습 사전 확인</li>
+      </ul>
+      <div class="about__stats">
+        <div><b>14년</b><small>시공 경력</small></div>
+        <div><b>800+</b><small>완료 현장</small></div>
+        <div><b>2년</b><small>하자보수 보증</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 견적 문의 -->
+<section class="section" id="contact">
+  <div class="wrap contact">
+    <div class="contact__l reveal">
+      <p class="eyebrow">Contact — 무료 견적</p>
+      <h2>견적부터<br>편하게 받아보세요</h2>
+      <p>공간과 예산을 남겨주시면 영업일 기준 1–2일 안에 연락드려 상담 일정을 잡아드립니다. 견적은 무료입니다.</p>
+      <div class="chans">
+        <a href="tel:0212345678">전화 02-1234-5678</a>
+        <a class="kko" href="https://pf.kakao.com" target="_blank" rel="noopener">카카오톡 상담</a>
+      </div>
+    </div>
+    <form class="form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="two">
+        <div class="field"><label for="name">성함</label><input id="name" name="name" type="text" required></div>
+        <div class="field"><label for="phone">연락처</label><input id="phone" name="phone" type="tel" placeholder="010-0000-0000" required></div>
+      </div>
+      <div class="two">
+        <div class="field"><label for="type">공간 유형</label><select id="type" name="type"><option>아파트</option><option>주방 단독</option><option>단독주택</option><option>상가·카페</option><option>기타</option></select></div>
+        <div class="field"><label for="size">평형 (대략)</label><input id="size" name="size" type="text" placeholder="예: 32평"></div>
+      </div>
+      <div class="field"><label for="budget">예산대</label><select id="budget" name="budget"><option>3,000만 이하</option><option>3,000–5,000만</option><option>5,000만–1억</option><option>1억 이상</option><option>미정</option></select></div>
+      <div class="field"><label for="msg">희망 일정·요청사항</label><textarea id="msg" name="msg" rows="3" placeholder="희망 시공 시기, 원하는 분위기 등을 적어주세요"></textarea></div>
+      <button type="submit" class="btn btn--petrol" style="width:100%;justify-content:center">견적 문의 보내기</button>
+    </form>
+  </div>
+</section>
+
+<!-- 푸터 -->
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <div class="footer__logo">ON<b>JIP</b> 온집 인테리어</div>
+      <small style="margin-top:10px">서울 · 인테리어 시공·리모델링 · 02-1234-5678<br>준공 후 2년 하자보수 보증 · © 2026 ONJIP. 이피웹 제작 샘플.</small>
+    </div>
+    <div>
+      <small style="color:var(--petrol);font-weight:700;letter-spacing:.04em">CONTACT</small>
+      <p style="margin-top:8px"><a href="tel:0212345678">전화</a> · <a href="https://pf.kakao.com" target="_blank" rel="noopener">카카오톡</a> · <a href="#contact">무료 견적</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- 모바일 하단바 -->
+<div class="mbar">
+  <a class="tel" href="tel:0212345678">전화</a>
+  <a class="kko" href="https://pf.kakao.com" target="_blank" rel="noopener">카카오톡</a>
+  <a class="quote" href="#contact">무료 견적</a>
+</div>
+
+<style>
+.reveal{opacity:1;transform:none}
+@media (min-width:881px){
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+}
+</style>
+
+<script>
+(function(){
+  // before-after 슬라이더
+  function setPos(ba,pct){
+    pct=Math.max(0,Math.min(100,pct));
+    ba.querySelector('.ba__overlay').style.clipPath='inset(0 '+(100-pct)+'% 0 0)';
+    ba.querySelector('.ba__handle').style.left=pct+'%';
+  }
+  document.querySelectorAll('.ba').forEach(function(ba){
+    setPos(ba, parseFloat(ba.getAttribute('data-pos'))||50);
+    var dragging=false;
+    function fromX(clientX){ var r=ba.getBoundingClientRect(); setPos(ba, ((clientX-r.left)/r.width)*100); }
+    ba.addEventListener('pointerdown',function(e){ dragging=true; ba.setPointerCapture&&ba.setPointerCapture(e.pointerId); fromX(e.clientX); });
+    ba.addEventListener('pointermove',function(e){ if(dragging) fromX(e.clientX); });
+    ba.addEventListener('pointerup',function(){ dragging=false; });
+    ba.addEventListener('pointercancel',function(){ dragging=false; });
+  });
+
+  // 필터
+  var filter=document.getElementById('filter'), cases=[].slice.call(document.querySelectorAll('#cases .case'));
+  if(filter){ filter.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b)return;
+    filter.querySelectorAll('button').forEach(function(x){x.classList.remove('on');}); b.classList.add('on');
+    var cat=b.getAttribute('data-cat');
+    cases.forEach(function(c){ c.style.display=(cat==='전체'||c.getAttribute('data-cat')===cat)?'':'none'; });
+  }); }
+
+  // 모바일 햄버거
+  var burger=document.getElementById('burger'), links=document.getElementById('navLinks');
+  if(burger){ burger.addEventListener('click',function(){ links.classList.toggle('open'); }); }
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ links.classList.remove('open'); }); });
+
+  // 스크롤 리빌 (데스크탑만)
+  if(window.matchMedia('(min-width:881px)').matches && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); },{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
