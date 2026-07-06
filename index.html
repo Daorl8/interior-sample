@@ -97,7 +97,7 @@ a{color:inherit;text-decoration:none}
     <a href="#contact">문의</a>
     <a href="#contact" class="btn btn--petrol topnav__cta">무료 견적</a>
   </div>
-  <button class="topnav__burger" id="burger" aria-label="메뉴"><i></i><i></i><i></i></button>
+  <button class="topnav__burger" id="burger" aria-label="메뉴" aria-expanded="false" aria-controls="navLinks"><i></i><i></i><i></i></button>
 </nav>
 
 <!-- 히어로 -->
@@ -396,8 +396,8 @@ a{color:inherit;text-decoration:none}
 
   // 모바일 햄버거
   var burger=document.getElementById('burger'), links=document.getElementById('navLinks');
-  if(burger){ burger.addEventListener('click',function(){ links.classList.toggle('open'); }); }
-  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ links.classList.remove('open'); }); });
+  if(burger){ burger.addEventListener('click',function(){ burger.setAttribute('aria-expanded', links.classList.toggle('open')); }); }
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ links.classList.remove('open'); if(burger)burger.setAttribute('aria-expanded','false'); }); });
 
   // 스크롤 리빌 (데스크탑만)
   if(window.matchMedia('(min-width:881px)').matches && 'IntersectionObserver' in window){
